@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import './App.css'
-import SearchResult from './components/SearchResult/SearchResult';
+import './App.css';
 import TextInput from './components/TextInput/TextInput';
+import SearchResultList from './components/SearchResultList/SearchResultList';
 
 export interface SearchResultData {
   isbn: string;
@@ -64,13 +64,14 @@ function App() {
         {status === 'loading' && <p>Searching...</p>}
         {status === 'error' && <p>Something went wrong!</p>}
         {status === 'empty' && <p>No results</p>}
-        {status === 'success' && (
-          <div className="search-results">
-            <h2>Search Results:</h2>
-            {searchResults?.map((result) => (
-              <SearchResult key={result.isbn} result={result} />
-            ))}
-          </div>
+        {status === 'success' && searchResults && (
+          // <div className="search-results">
+          //   <h2>Search Results:</h2>
+          //   {searchResults?.map((result) => (
+          //     <SearchResult key={result.isbn} result={result} />
+          //   ))}
+          // </div>
+          <SearchResultList searchResults={searchResults} />
         )}
       </main>
     </>
